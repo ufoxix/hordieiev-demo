@@ -22,4 +22,5 @@ php ./vendor/bin/phpunit -c dev/tests/unit/phpunit.xml.dist ./vendor/hordieiev/m
 
 ### Changelog
 
+    * 1.0.1 - Changed license type
     * 1.0.0 - Initial Module skeleton
