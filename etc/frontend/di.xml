@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Hordieiev\Demo\Api\Service\FrontendArea\Account\OrderHistoryCountInterface" type="Hordieiev\Demo\Model\Service\FrontendArea\Account\OrderHistoryCount"/>
+    <type name="Magento\Framework\App\FrontController">
+        <plugin name="page-activities-log" type="Hordieiev\Demo\Plugin\Framework\App\FrontController\PageActivityLog"/>
+    </type>
+    <!--define logger-->
+    <virtualType name="PageViewLoggerHandler" type="Magento\Framework\Logger\Handler\Base">
+        <arguments>
+            <argument name="fileName" xsi:type="string">var/log/page-view.log</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="PageViewLogger" type="Magento\Framework\Logger\Monolog">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="debug" xsi:type="object">PageViewLoggerHandler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Hordieiev\Demo\Plugin\Framework\App\FrontController\PageActivityLog">
+        <arguments>
+            <argument name="logger" xsi:type="object">PageViewLogger</argument>
+        </arguments>
+    </type>
+    <!--end logger-->
+</config>
